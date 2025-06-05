@@ -36,7 +36,7 @@ app.post("/execute-command", (req, res) => {
   exec(`powershell -Command "${command}"`, (error, stdout, stderr) => {
     if (error) {
       console.error(
-        `Erreur lors de l'exécution de la commande : ${error.message}`
+        `Erreur lors de l'exécution de la commande : ${error.message}.`
       );
       return res.status(500).json({ error: error.message, stderr });
     }
