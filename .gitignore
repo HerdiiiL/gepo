@@ -1,3 +1,4 @@
 # Ignore node_modules folder
 /gepo-backend/node_modules/
 /gepo-mcp/node_modules/
+/gepo-api/node_modules/
