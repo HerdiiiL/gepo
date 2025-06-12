@@ -33,6 +33,6 @@ app.post("/execute-ps-command", async (req, res) => {
 });
 
 const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`📡 Remote Express server listening on port ${PORT}`);
 });
