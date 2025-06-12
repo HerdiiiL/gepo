@@ -5,13 +5,10 @@ import {
   ListToolsRequestSchema,
   CallToolRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { exec } from "child_process";
-import { promisify } from "util";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import axios from "axios";
 
 export const setupHandlers = (server: Server): void => {
-  const execAsync = promisify(exec);
-
   // Read a resource when users request it
   server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
     if (request.params.uri === "hello://world") {
@@ -33,7 +30,7 @@ export const setupHandlers = (server: Server): void => {
     return {
       tools: [
         {
-          name: "execute_ps_command",
+          name: "execute_remote_ps_command",
           description: "Execute a PowerShell command",
           inputSchema: {
             type: "object",
@@ -70,7 +67,7 @@ export const setupHandlers = (server: Server): void => {
 
   // Handle tool calls
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
-    if (request.params.name === "execute_ps_command") {
+    if (request.params.name === "execute_remote_ps_command") {
       const arg = request.params.arguments;
       if (!arg || typeof arg !== "object") {
         throw new Error("Invalid arguments for execute_ps_command");
@@ -78,23 +75,35 @@ export const setupHandlers = (server: Server): void => {
       const command = arg.command;
 
       try {
-        const { stdout, stderr } = await execAsync(
-          `powershell.exe -Command "${command}`
+        const response = await axios.post(
+          "http://10.12.10.10:3000/execute-ps-command",
+          {
+            command: command,
+            description: arg.description || "",
+          }
         );
 
-        let result = "";
-        if (stdout) {
-          result += `Output:\n${stdout}`;
-        }
-        if (stderr) {
-          result += `\nError:\n${stderr}`;
+        const output = response.data;
+
+        if (!output.success) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Remote error: ${output.error || "Unknown error"}`,
+              },
+            ],
+            isError: true,
+          };
         }
 
         return {
           content: [
             {
               type: "text",
-              text: result || "Command executed successfully with no output.",
+              text:
+                output.output ||
+                "Command executed successfully with no output.",
             },
           ],
         };
