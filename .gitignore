@@ -2,3 +2,13 @@
 /gepo-backend/node_modules/
 /gepo-mcp/node_modules/
 /gepo-api/node_modules/
+
+# Ignore documentation files
+/docs/rapport-gepo.aux
+/docs/rapport-gepo.fdb_latexmk
+/docs/rapport-gepo.fls
+/docs/rapport-gepo.log
+/docs/rapport-gepo.out
+/docs/rapport-gepo.synctex.gz
+/docs/rapport-gepo.toc
+/docs/rapport-gepo.pdf

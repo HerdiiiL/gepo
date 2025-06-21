@@ -1,0 +1,43 @@
+
+\section{Introduction}
+
+\subsection*{Contexte}
+Les intelligences artificielles conversationnelles telles que ChatGPT, Claude, Gemini ou autre nous permettent de faciliter nos tâches quotidiennes. Ces tâches qui peuvent souvent être techniques et complexes peuvent maintenant être effectuées par une IA directement. 
+
+GEPO consiste donc à mettre en place une solution rapide qui permet aux administrateurs d'infrastructure informatique de gérer rapidement leurs équipements tel que des serveurs, des machines virtuelles ou des machines physiques. 
+
+Ce projet se fait dans le contexte de le cours de laboratoire 01 pour notre formation d'ES. Le dépôt GIT se trouve sur le \href{https://github.com/HerdiiiL/gepo}{lien suivant}.
+
+\subsection*{Objectifs}
+Ce projet a pour objectif principal de permettre à une intelligence artificielle, Claude dans notre cas, d’exécuter des commandes administratives à distance sur un serveur Windows, à partir de simples requêtes formulées en langage naturel.
+
+Plus précisément, ce projet vise à :
+\begin{itemize}
+    \item Permettre à une IA de comprendre et interpréter des requêtes humaines liées à la gestion d’un système Windows.
+    \item Construire un système capable de générer dynamiquement les commandes PowerShell nécessaires.
+    \item Transmettre ces commandes à une machine distante.
+    \item Exécuter les commandes sur le serveur distant et en retourner le résultat à l’utilisateur.
+\end{itemize}
+
+\subsection*{Architecture du projet}
+\begin{itemize}
+  \item \textbf{Claude (IA)} : Interpréteur du langage naturel.
+  \item \textbf{Serveur MCP (Machine locale)} : Transmet le "langage" à Claude.
+  \item \textbf{Serveur Express (Machine distante)} : Reçoit les commandes et les exécute.
+\end{itemize}
+
+\subsection*{Fonctionnement}
+Ci-présent, se trouve un exemple concret de l'utilisation de GEPO. 
+
+\begin{enumerate}
+    \item Un administrateur informatique a besoin de créer un utilisateur sur un serveur Windows.
+    \item Il lance l'application Claude sur son ordinateur.
+    \item Il lui demande de créer un utilisateur sur le serveur.
+    \item Claude génère la commande PowerShell approprié.
+    \item Claude transmet la commande au serveur MCP selon le protocole de communication.
+    \item Le serveur MCP transmet la commande au serveur Express.
+    \item La commande PowerShell est exécutée sur le serveur distant.
+    \item Le serveur Express renvoie le résultat de l’exécution de la commande au serveur MCP.
+    \item Le serveur MCP renvoie le résultat de l’exécution de la commande à Claude.
+    \item Claude génère une réponse approprié et l'affiche à l'administrateur.
+\end{enumerate}
