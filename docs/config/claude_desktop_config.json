@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "gepo-mcp-local": {
+      "command": "node",
+      "args": ["C:/HAHE/Projets/gepo/main/gepo-mcp/build/local/index.js"]
+    },
+	"gepo-mcp-remote": {
+		"command": "node", 
+		"args": ["C:/HAHE/Projets/gepo/main/gepo-mcp/build/remote/index.js"]
+	}
+  }
+}
