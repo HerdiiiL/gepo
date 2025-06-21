@@ -1,14 +1,14 @@
 # Ignore node_modules folder
-/gepo-backend/node_modules/
 /gepo-mcp/node_modules/
 /gepo-api/node_modules/
 
 # Ignore documentation files
-/docs/rapport-gepo.aux
-/docs/rapport-gepo.fdb_latexmk
-/docs/rapport-gepo.fls
-/docs/rapport-gepo.log
-/docs/rapport-gepo.out
-/docs/rapport-gepo.synctex.gz
-/docs/rapport-gepo.toc
-/docs/rapport-gepo.pdf
+/docs/*.aux
+/docs/*.fdb_latexmk
+/docs/*.log
+/docs/*.out
+/docs/*.synctex.gz
+/docs/*.toc
+/docs/*.pdf
+/docs/*.fls
+/docs/*.synctex(busy)

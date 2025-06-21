@@ -1,0 +1,20 @@
+\section{Conclusion}
+
+\subsection*{Bilan final}
+
+Le projet présenté dans ce rapport démontre la faisabilité d’un système d’exécution distante de commandes sur une infrastructure Windows via une interface IA. Grâce à la mise en place d’un serveur local MCP capable de générer dynamiquement les commandes nécessaires, et d’un serveur distant Express pouvant les exécuter de manière sécurisée, nous avons réussi à créer un pipeline fonctionnel entre l’utilisateur et le système cible. 
+
+Les fonctionnalités essentielles comme la récupération d’informations depuis un Active Directory ou l’exécution de scripts PowerShell à distance ont été testées et validées avec succès. Le projet s’inscrit pleinement dans une logique d’automatisation des tâches administratives et techniques en environnement professionnel, avec une attention particulière portée à la robustesse et à la sécurité.
+
+\subsection*{Bilan personnel}
+
+Ce projet m’a permis de renforcer mes compétences techniques en administration système, développement back-end (Node.js / Express), gestion réseau et sécurisation des échanges. Il m’a également amené à intégrer des notions plus avancées liées aux agents intelligents et à la communication entre services (API REST, MCP/Express).
+
+La partie intégration IA, bien qu’elle puisse sembler secondaire, a représenté un véritable défi en matière de contextualisation des requêtes et d’interprétation naturelle des intentions utilisateurs. Le fait de traduire une phrase comme "Montre-moi tous les utilisateurs" en une commande PowerShell exacte m’a permis de mieux comprendre les enjeux de la couche d’abstraction entre langage humain et commande machine.
+
+\subsection*{Futures perspectives}
+
+Plusieurs pistes d’amélioration peuvent être envisagées. D’une part, la sécurisation des communications peut être renforcée avec l’intégration de mécanismes d’authentification, de chiffrement TLS et de gestion fine des droits d’accès. D’autre part, l’intégration de l’IA pourrait être étendue à l’aide de modèles personnalisés entraînés sur le contexte de l’entreprise ou du domaine cible.
+
+Enfin, une généralisation du projet pourrait permettre à tout utilisateur, sans compétences techniques, de piloter une infrastructure complète via une simple interface de chat, couplée à un moteur de règles évolutif ou un LLM personnalisé.
+

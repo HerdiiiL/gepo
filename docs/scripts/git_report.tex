@@ -1,7 +1,10 @@
+\subsection*{Rapport Git du \today}
+\textit{Généré automatiquement le \texttt{21/06/2025 à 20h25}}
+
 \subsection*{Repository Overview}
 \begin{itemize}
-    \item Current Branch: \textbf{docs}
-    \item Latest Tag: \textbf{No tags}
+    \item Branche courante : \textbf{docs}
+    \item Dernier tag : \textbf{No tags}
 \end{itemize}
 
 \subsection*{Remote Information}
@@ -13,26 +16,42 @@ origin	https://github.com/HerdiiiL/gepo.git (push)
 \subsection*{Status Information}
 \begin{verbatim}
 On branch docs
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    ../parts/claude-gepo.tex
+	modified:   ../parts/express-gepo.tex
+	modified:   ../parts/mcp-gepo.tex
+	modified:   ../rapport-gepo.tex
+	modified:   git\_latex-gen.sh
+	modified:   git\_report.tex
+	modified:   ../../gepo-api/index.js
+	modified:   ../../gepo-mcp/build/remote/handlers.js
+	modified:   ../../gepo-mcp/build/remote/index.js
+
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	../
+	../config/files-config.tex
+	../pdflatex3944.fls
+	../pdflatex7208.fls
+	../rapport-gepo.synctex(busy)
 
-nothing added to commit but untracked files present (use "git add" to track)
+no changes added to commit (use "git add" and/or "git commit -a")
 \end{verbatim}
 
 \subsection*{Branch Information}
 \begin{verbatim}
-  dev  c93e0ff feat: implement remote PowerShell command execution and resource management handlers
-* docs c93e0ff feat: implement remote PowerShell command execution and resource management handlers
+  dev  f468997 feat: implement server setup and request handlers for resource management
+* docs ffe3784 Merge pull request \#18 from HerdiiiL/main
   list aa55012 Merge pull request \#1 from HerdiiiL/dev
-+ main aa55012 Merge pull request \#1 from HerdiiiL/dev
++ main fe5a584 Merge pull request \#17 from HerdiiiL/dev
 \end{verbatim}
 
 \subsection*{Worktree Information}
 \scriptsize
 \begin{verbatim}
 C:/HAHE/Projets/gepo/.bare  (bare)
-C:/HAHE/Projets/gepo/main   c93e0ff [docs]
+C:/HAHE/Projets/gepo/main   ffe3784 [docs]
 \end{verbatim}
 \footnotesize
 
@@ -40,22 +59,62 @@ C:/HAHE/Projets/gepo/main   c93e0ff [docs]
 
 \subsection*{Commit Graph}
 \begin{alltt}
-* c93e0ff - (2025-06-12) feat: implement remote PowerShell command execution and resource management handlers - HerdiiiL
-|  (HEAD -> docs, dev)
-* fec1c6e - (2025-06-12) feat: change module type from commonjs to module in package.json - HerdiiiL
-| 
-* e140c20 - (2025-06-12) feat: add new gepo-api with express dependency and remove old backend - HerdiiiL
-| 
-* 0d2772d - (2025-06-12) feat: add server setup and request handlers for resource and tool management - HerdiiiL
-| 
-* 6c57887 - (2025-06-12) feat: implement request handlers for resource management and PowerShell command execution - HerdiiiL
-| 
-* ca7a71e - (2025-06-05) mcp working in local only - HerdiiiL
-| 
-* 54d831b - (2025-06-05) chore: initialize gepo-mcp project with package.json and tsconfig.json - HerdiiiL
+*   ffe3784 - (2025-06-21) Merge pull request \#18 from HerdiiiL/main - HAHE
+|\textbackslash\{\}   (HEAD -> docs)
+| *   fe5a584 - (2025-06-21) Merge pull request \#17 from HerdiiiL/dev - HAHE
+| |\textbackslash\{\}   (main)
+| | * f468997 - (2025-06-21) feat: implement server setup and request handlers for resource management - HerdiiiL
+| | |  (dev)
+| | * a1fb41b - (2025-06-21) feat: add comments for clarity in PowerShell command execution endpoint - HerdiiiL
+| | | 
+| | * 47d324a - (2025-06-21) feat: remove unused resource and tool handling from server setup - HerdiiiL
+| | |   
+| | *   eaa27f2 - (2025-06-21) Merge pull request \#16 from HerdiiiL/main - HAHE
+| | |\textbackslash\{\}  
+| | |/  
+| |/|   
+| | |   
+| * |   5d17374 - (2025-06-21) Merge pull request \#15 from HerdiiiL/docs - HAHE
+| |\textbackslash\{\} \textbackslash\{\}  
+| |/ /  
+|/| |   
+| | | 
+* | | 1620609 - (2025-06-21) feat: update documentation and add configuration files for GEPO project - HerdiiiL
+| |/  
+|/|   
+| |   
+| *   cad21bb - (2025-06-12) Merge pull request \#10 from HerdiiiL/dev - HAHE
+| |\textbackslash\{\}  
+| |/  
+|/|   
+| | 
+* | c93e0ff - (2025-06-12) feat: implement remote PowerShell command execution and resource management handlers - HerdiiiL
+| |   
+| *   b3b9486 - (2025-06-12) Merge pull request \#9 from HerdiiiL/dev - HAHE
+| |\textbackslash\{\}  
+| |/  
+|/|   
+| | 
+* | fec1c6e - (2025-06-12) feat: change module type from commonjs to module in package.json - HerdiiiL
+| |   
+| *   a8a55e3 - (2025-06-12) Merge pull request \#8 from HerdiiiL/dev - HAHE
+| |\textbackslash\{\}  
+| |/  
+|/|   
+| | 
+* | e140c20 - (2025-06-12) feat: add new gepo-api with express dependency and remove old backend - HerdiiiL
+| | 
+* | 0d2772d - (2025-06-12) feat: add server setup and request handlers for resource and tool management - HerdiiiL
+| | 
+* | 6c57887 - (2025-06-12) feat: implement request handlers for resource management and PowerShell command execution - HerdiiiL
+| | 
+* | ca7a71e - (2025-06-05) mcp working in local only - HerdiiiL
+| | 
+* | 54d831b - (2025-06-05) chore: initialize gepo-mcp project with package.json and tsconfig.json - HerdiiiL
+|/  
 |   
 *   aa55012 - (2025-06-05) Merge pull request \#1 from HerdiiiL/dev - HAHE
-|\textbackslash{}   (main, list)
+|\textbackslash\{\}   (list)
 | * 99bba0e - (2025-06-05) fix: add period to error message in execute-command endpoint - HerdiiiL
 | | 
 | * 86725b4 - (2025-06-05) feat: set up server with express and add PowerShell command execution endpoint - HerdiiiL
@@ -70,13 +129,28 @@ C:/HAHE/Projets/gepo/main   c93e0ff [docs]
 
 \pagebreak
 
-\subsection*{Detailed Commit History}
-\begin{longtable}{llll}
+\subsection*{Historique détaillé des commits}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\begin{longtable}{@{}p{2.5cm}p{3.5cm}p{3.5cm}p{7cm}@{}}
 \toprule
-Commit Hash & Author & Date & Message \\
+\textbf{Hash} & \textbf{Auteur} & \textbf{Date} & \textbf{Message} \\
 \midrule
+\endhead
+\texttt{ffe3784} & HAHE & 2025-06-21 19:49:05 +0200 & Merge pull request \#18 from HerdiiiL/main \\
+\texttt{fe5a584} & HAHE & 2025-06-21 19:47:32 +0200 & Merge pull request \#17 from HerdiiiL/dev \\
+\texttt{f468997} & HerdiiiL & 2025-06-21 19:47:02 +0200 & feat: implement server setup and request handlers for resource management \\
+\texttt{a1fb41b} & HerdiiiL & 2025-06-21 19:46:33 +0200 & feat: add comments for clarity in PowerShell command execution endpoint \\
+\texttt{47d324a} & HerdiiiL & 2025-06-21 19:44:30 +0200 & feat: remove unused resource and tool handling from server setup \\
+\texttt{eaa27f2} & HAHE & 2025-06-21 19:43:05 +0200 & Merge pull request \#16 from HerdiiiL/main \\
+\texttt{5d17374} & HAHE & 2025-06-21 19:41:23 +0200 & Merge pull request \#15 from HerdiiiL/docs \\
+\texttt{1620609} & HerdiiiL & 2025-06-21 19:39:20 +0200 & feat: update documentation and add configuration files for GEPO project \\
+\texttt{cad21bb} & HAHE & 2025-06-12 16:43:15 +0200 & Merge pull request \#10 from HerdiiiL/dev \\
 \texttt{c93e0ff} & HerdiiiL & 2025-06-12 16:42:46 +0200 & feat: implement remote PowerShell command execution and resource management handlers \\
+\texttt{b3b9486} & HAHE & 2025-06-12 16:13:09 +0200 & Merge pull request \#9 from HerdiiiL/dev \\
 \texttt{fec1c6e} & HerdiiiL & 2025-06-12 16:12:23 +0200 & feat: change module type from commonjs to module in package.json \\
+\texttt{a8a55e3} & HAHE & 2025-06-12 16:09:34 +0200 & Merge pull request \#8 from HerdiiiL/dev \\
 \texttt{e140c20} & HerdiiiL & 2025-06-12 16:08:04 +0200 & feat: add new gepo-api with express dependency and remove old backend \\
 \texttt{0d2772d} & HerdiiiL & 2025-06-12 15:00:14 +0200 & feat: add server setup and request handlers for resource and tool management \\
 \texttt{6c57887} & HerdiiiL & 2025-06-12 14:34:11 +0200 & feat: implement request handlers for resource management and PowerShell command execution \\

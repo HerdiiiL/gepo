@@ -1,86 +1,67 @@
 #!/bin/bash
 
-# Set the output file name
-DATE=$(date '+%Y-%m-%d')
-FILE_PATH=""
+# 🔒 Vérifie que l'on est bien dans un dépôt Git
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "❌ Ce répertoire n'est pas un dépôt Git."
+  exit 1
+fi
+
+# 📁 Gestion du chemin de sortie (par défaut: dossier courant)
+FILE_PATH="${1:-./}"
+FILE_PATH="${FILE_PATH%/}/"
+DATE=$(date '+%Y-%m-%d_%H-%M')
 OUTPUT_FILE="${FILE_PATH}git_report.tex"
 
-# Get general repository information
+# 📋 Récupération des infos Git
 CURRENT_BRANCH=$(git branch --show-current)
 LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "No tags")
 REMOTE_INFO=$(git remote -v)
 STATUS_INFO=$(git status)
-
-# Get branch information
-BRANCH=$(git branch --list -v)
-
-# Get worktree information
+BRANCH_INFO=$(git branch --list -v)
 WORKTREE=$(git worktree list)
-
-# Get commit graph visualization
 COMMIT_GRAPH=$(git log --all --decorate --oneline --graph --format=format:'%C(auto)%h - %C(bold green)(%as) %C(white)%s %C(dim white)- %an%n%C(auto)%d')
-
-# Get detailed commit history
 COMMIT_HISTORY=$(git log --all --pretty=format:'%h|%an|%ad|%s' --date=iso)
 
-# Escape special LaTeX characters in user-generated content
-escape_latex_braces() {
-	echo "$1" | sed -e 's/[{}]/\\&/g'
-}
-
-escape_latex_backslash() {
-	echo "$1" | sed -e 's/\\/\\textbackslash{}/g'
-}
-
-escape_latex_circum() {
-	echo "$1" | sed -e 's/\^/\\textasciicircum{}/g'
-}
-
-escape_latex_tilde() {
-	echo "$1" | sed -e 's/~/\\textasciitilde{}/g'
-}
-
-escape_latex_special_char() {
-	echo "$1" | sed -e 's/[&%$#_]/\\&/g'
-}
-
+# 🧼 Fonction d'échappement LaTeX
 escape_latex() {
-	input="$1"
-	input=$(escape_latex_braces "$input")
-    input=$(escape_latex_backslash "$input")
-    input=$(escape_latex_circum "$input")
-    input=$(escape_latex_tilde "$input")
-    input=$(escape_latex_special_char "$input")
-    echo "$input"
+  sed -e 's/\\/\\textbackslash{}/g' \
+      -e 's/{/\\{/g' \
+      -e 's/}/\\}/g' \
+      -e 's/\^/\\textasciicircum{}/g' \
+      -e 's/~/\\textasciitilde{}/g' \
+      -e 's/[&%$#_]/\\&/g'
 }
 
-# Generate LaTeX document
+# 📄 Génération du document LaTeX
 cat > "$OUTPUT_FILE" << EOF
+\subsection*{Rapport Git du \today}
+\textit{Généré automatiquement le \texttt{$(date '+%d/%m/%Y à %Hh%M')}}
+
 \subsection*{Repository Overview}
 \begin{itemize}
-    \item Current Branch: \textbf{$(escape_latex "$CURRENT_BRANCH")}
-    \item Latest Tag: \textbf{$(escape_latex "$LATEST_TAG")}
+    \item Branche courante : \textbf{$(echo "$CURRENT_BRANCH" | escape_latex)}
+    \item Dernier tag : \textbf{$(echo "$LATEST_TAG" | escape_latex)}
 \end{itemize}
 
 \subsection*{Remote Information}
 \begin{verbatim}
-$(escape_latex "$REMOTE_INFO")
+$(echo "$REMOTE_INFO" | escape_latex)
 \end{verbatim}
 
 \subsection*{Status Information}
 \begin{verbatim}
-$(escape_latex "$STATUS_INFO")
+$(echo "$STATUS_INFO" | escape_latex)
 \end{verbatim}
 
 \subsection*{Branch Information}
 \begin{verbatim}
-$(escape_latex "$BRANCH")
+$(echo "$BRANCH_INFO" | escape_latex)
 \end{verbatim}
 
 \subsection*{Worktree Information}
 \scriptsize
 \begin{verbatim}
-$(escape_latex "$WORKTREE")
+$(echo "$WORKTREE" | escape_latex)
 \end{verbatim}
 \footnotesize
 
@@ -88,23 +69,36 @@ $(escape_latex "$WORKTREE")
 
 \subsection*{Commit Graph}
 \begin{alltt}
-$(escape_latex "$COMMIT_GRAPH")
+$(echo "$COMMIT_GRAPH" | escape_latex)
 \end{alltt}
 
 \pagebreak
 
-\subsection*{Detailed Commit History}
-\begin{longtable}{llll}
+\subsection*{Historique détaillé des commits}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\begin{longtable}{@{}p{2.5cm}p{3.5cm}p{3.5cm}p{7cm}@{}}
 \toprule
-Commit Hash & Author & Date & Message \\\\
+\textbf{Hash} & \textbf{Auteur} & \textbf{Date} & \textbf{Message} \\\\
 \midrule
-$(echo "$(escape_latex "$COMMIT_HISTORY")" | while read -r line; do
-    IFS='|' read -ra cols <<< "$line"
-    echo "\texttt{${cols[0]}} & ${cols[1]} & ${cols[2]} & ${cols[3]} \\\\"
-done)
+\endhead
+EOF
+
+# 🔁 Ajouter les lignes du tableau commit
+echo "$COMMIT_HISTORY" | while IFS='|' read -r hash author date message; do
+  echo "\texttt{$(echo "$hash" | escape_latex)} & \
+$(echo "$author" | escape_latex) & \
+$(echo "$date" | escape_latex) & \
+$(echo "$message" | escape_latex) \\\\" >> "$OUTPUT_FILE"
+done
+
+# ✅ Fin du tableau
+cat >> "$OUTPUT_FILE" << EOF
 \bottomrule
 \end{longtable}
 EOF
 
-echo "LaTeX report generated: $OUTPUT_FILE"
-echo "Compile with: pdflatex $OUTPUT_FILE"
+# 📢 Fin
+echo "✅ Rapport LaTeX généré : $OUTPUT_FILE"
+echo "👉 Compile avec : pdflatex $(basename "$OUTPUT_FILE")"

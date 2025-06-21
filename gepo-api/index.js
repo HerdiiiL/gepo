@@ -8,7 +8,8 @@ app.use(express.json());
 const execAsync = promisify(exec);
 
 app.post("/execute-ps-command", async (req, res) => {
-  // Récupération de la commande et d'une éventuelle description depuis le corps de la requête
+  // Recuperation de la commande et d'une eventuelle
+  // description depuis le corps de la requete
   const { command, description } = req.body;
 
   if (!command) {
@@ -16,12 +17,14 @@ app.post("/execute-ps-command", async (req, res) => {
   }
 
   try {
-    // Exécution de la commande PowerShell de manière asynchrone
+    // Execution de la commande PowerShell de maniere
+    // asynchrone
     const { stdout, stderr } = await execAsync(
       `powershell.exe -Command "${command}"`
     );
 
-    // Envoie de la réponse avec le résultat (stdout) et les erreurs éventuelles (stderr)
+    // Envoie de la reponse avec le resultat (stdout)
+    // et les erreurs eventuelles (stderr)
     res.json({
       success: true,
       output: stdout,
@@ -36,7 +39,8 @@ app.post("/execute-ps-command", async (req, res) => {
 });
 
 const PORT = 3000;
-// Démarrage du serveur sur l'IP 0.0.0.0 pour qu’il soit accessible de l’extérieur
+// Demarrage du serveur sur l'IP 0.0.0.0 pour qu'il
+// soit accessible
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Remote Express server listening on port ${PORT}`);
 });
