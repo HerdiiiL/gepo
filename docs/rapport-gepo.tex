@@ -22,34 +22,7 @@
 \definecolor{delim}{RGB}{20,105,176}
 \colorlet{numb}{magenta!60!black}
 
-\lstdefinelanguage{json}{
-    basicstyle=\normalfont\ttfamily,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=8pt,
-    showstringspaces=false,
-    breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
+\import{./config/}{files-config.tex}
 
 \setlength{\headheight}{30pt}
 \setlength{\parskip}{1em}  
@@ -75,52 +48,8 @@
 
 \import{./parts/}{introduction-gepo.tex}
 \import{./parts/}{mise_en_place-gepo.tex}
-\import{./parts/}{claude-gepo.tex}
 \import{./parts/}{mcp-gepo.tex}
 \import{./parts/}{express-gepo.tex}
-
-\section{Github}
-Cette partie contient toutes les informations relatives à mon dépôt Github. 
-
-\import{./scripts/}{git_report.tex}
-
-\subsection*{Exemple de tableau}
-\begin{center}
-\begin{tabular}{lll}
-\toprule
-\textbf{Tâche} & \textbf{Responsable} & \textbf{Statut} \\
-\midrule
-Analyse        & Mobutu     & Terminé \\
-Développement  & Équipe Dev & En cours \\
-Tests          & QA Team    & À venir \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\section{Illustration}
-Voici un exemple d'insertion d'image :
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.6\textwidth]{example-image}
-\caption{Exemple d'image dans un rapport}
-\end{figure}
-
-\section{Conclusion}
-Ce modèle montre les bases d’un rapport en LaTeX. Il est possible d’ajouter des annexes, des citations, des listes, des codes sources, et bien plus.
-
-\newpage
-\section*{Bibliographie}
-\begin{thebibliography}{9}
-\bibitem{lamport}
-Leslie Lamport,
-\textit{LaTeX: A Document Preparation System},
-Addison-Wesley, 2nd edition, 1994.
-
-\bibitem{latex3}
-LaTeX Project,
-\textit{Official LaTeX Project Website},
-\url{https://www.latex-project.org}
-\end{thebibliography}
-
+\import{./parts/}{github-gepo.tex}
+\import{./parts/}{conclusion-gepo.tex}
 \end{document}
